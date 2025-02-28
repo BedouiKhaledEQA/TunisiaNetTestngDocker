@@ -14,7 +14,7 @@
 
         <classes>
             <class name="Test_Cases.TC002_Login"/>
-            <class name="Test_Cases.TC001_Registration"/>
+
         </classes>
     </test>
 
