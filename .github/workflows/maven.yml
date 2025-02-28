@@ -20,7 +20,7 @@ jobs:
         uses: browser-actions/setup-chrome@latest
 
       - name: Run Tests
-        run: mvn clean test
+        run: mvn clean test -Dreport=true  # S'assurer que le rapport Extent est généré
 
       - name: Get ExtentReport history
         uses: actions/checkout@v2
@@ -28,6 +28,10 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
+
+      - name: List files in target directory  # Vérifier que les rapports existent
+        run: |
+          ls -R target
 
       - name: Save ExtentReport to gh-pages directory
         run: |
