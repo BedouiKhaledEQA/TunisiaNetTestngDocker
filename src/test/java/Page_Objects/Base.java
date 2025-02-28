@@ -123,6 +123,9 @@ public class Base {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (isHeadless) {
                     chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("--disable-gpu");  // Pour éviter les erreurs liées au GPU
+                    chromeOptions.addArguments("--window-size=1920x1080");  // Taille de la fenêtre
+                    chromeOptions.addArguments("--no-sandbox");
                 }
                 driverInstance = new ChromeDriver(chromeOptions);
                 break;
