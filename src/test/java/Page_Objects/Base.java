@@ -123,6 +123,8 @@ public class Base {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (isHeadless) {
                     chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
                 }
                 driverInstance = new ChromeDriver(chromeOptions);
                 break;
