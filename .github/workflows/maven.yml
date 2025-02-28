@@ -20,7 +20,7 @@ jobs:
         uses: browser-actions/setup-chrome@latest
 
       - name: Run tests with Maven
-        run: mvn test -DsuiteXmlFile=Grouping.xml
+        run: mvn test -DsuiteXmlFile=Testng.xml
 
 
       - name: Get ExtentReport history
