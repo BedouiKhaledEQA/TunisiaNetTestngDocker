@@ -133,7 +133,7 @@
                 <version>3.5.2</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>Testng.xml</suiteXmlFile>
+                        <suiteXmlFile>Grouping.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <properties>
                         <property>
