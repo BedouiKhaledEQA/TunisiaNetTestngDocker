@@ -18,7 +18,8 @@ jobs:
         uses: browser-actions/setup-chrome@latest
 
       - name: Run Tests with Maven and TestNG
-        run: mvn clean test
+        run: mvn clean test -Denv=local -Dbrowser=firefox -Dheadless=true
+
 
       - name: Collect Extent Reports
         run: mvn extent-report:report
