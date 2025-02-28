@@ -7,29 +7,33 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class Registration_Locators extends Base {
-    public Registration_Locators(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+    public Registration_Locators(){
+        PageFactory.initElements(getDriver(),this);
     }
 
-
-    @FindBy(xpath = "//a[@class='btn btn-black navbar-btn']")
-    protected WebElement registrationButton;
-    @FindBy(xpath = "//input[@id='input-username']")
-    protected WebElement Username;
-    @FindBy(xpath = "//input[@id='input-firstname']")
-    protected WebElement FirstName;
-    @FindBy(xpath = "//input[@id='input-lastname']")
-    protected WebElement LastName;
-    @FindBy(xpath = "//input[@id='input-email']")
+    @FindBy(xpath = "//div[@class='user-info']")
+    protected WebElement connexionButtonIcon;
+    @FindBy(xpath = "//span[normalize-space()='Connexion']")
+    protected WebElement ConnexionButton;
+    @FindBy(css = "a[href='https://www.tunisianet.com.tn/connexion?create_account=1']")
+    protected WebElement createAccountButton;
+    @FindBy(css = "input[value='2']")
+    protected WebElement genderRadioButton;
+    @FindBy(xpath = "//input[@name='firstname']")
+    protected WebElement firstname;
+    @FindBy(xpath = "//input[@name='lastname']")
+    protected WebElement lastname;
+    @FindBy(xpath = "//input[@name='email']")
     protected WebElement email;
-    @FindBy(xpath = "//select[@id='input-country']")
-    protected WebElement Country;
-    @FindBy(xpath = "//input[@id='input-password']")
+    @FindBy(xpath = "//input[@name='password']")
     protected WebElement password;
-    @FindBy(xpath = "//div[@id='account-register']//li[1]//a[1]//img[1]")
-    protected WebElement clockButton;
+    @FindBy(xpath = "//input[@name='birthday']")
+    protected WebElement birthdayInput;
     @FindBy(xpath = "//button[@type='submit']")
-    protected WebElement submitButton;
+    protected WebElement saveButton;
+    @FindBy(css = "a[title='Voir mon compte client']")
+    protected WebElement connectedUserButton;
+
 
 
 

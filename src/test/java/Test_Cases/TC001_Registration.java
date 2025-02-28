@@ -8,9 +8,11 @@ public class TC001_Registration extends Base {
 
 
 
-    @Test
+    @Test(groups = {"Sanity"})
     public void RegistrationPage() throws InterruptedException {
-        Registration_Page.getInstance().perform_registration();
+        logger.info("**** STARTING TC001_Registration **** ");
+        Registration_Page.getInstance().performRegister();
+        Registration_Page.getInstance().performRegisterAssertion();
     }
 
 

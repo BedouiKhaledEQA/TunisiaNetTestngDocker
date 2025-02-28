@@ -1,0 +1,64 @@
+2025-02-28T15:10:32,786 [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml"
+2025-02-28T15:10:33,402 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml
+
+2025-02-28T15:10:41,720 [main] INFO  Test_Cases.TC002_Login - **** STARTING TC002_Login ****
+2025-02-28T15:10:50,815 [main] INFO  Test_Cases.TC002_Login - Closing the browser...
+2025-02-28T15:24:50,390 [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml"
+2025-02-28T15:24:50,909 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml
+
+2025-02-28T15:24:57,255 [main] INFO  Test_Cases.TC002_Login - **** STARTING TC002_Login ****
+2025-02-28T15:25:06,508 [main] INFO  Test_Cases.TC002_Login - Closing the browser...
+2025-02-28T15:59:54,481 [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml"
+2025-02-28T15:59:55,041 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml
+
+2025-02-28T16:00:01,133 [main] INFO  Test_Cases.TC002_Login - **** STARTING TC002_Login ****
+2025-02-28T16:00:05,579 [main] INFO  Test_Cases.TC002_Login - Closing the browser...
+2025-02-28T16:08:56,977 [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\KHALED\IdeaProjects\Testng-docker\Testng.xml"
+2025-02-28T16:08:57,516 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\KHALED\IdeaProjects\Testng-docker\Testng.xml
+
+2025-02-28T16:09:03,748 [TestNG-test-CHROME-TEST-1] INFO  Test_Cases.TC002_Login - **** STARTING TC002_Login ****
+2025-02-28T16:09:03,748 [TestNG-test-CHROME-TEST-2] INFO  Test_Cases.TC002_Login - **** STARTING TC001_Registration **** 
+2025-02-28T16:09:07,900 [TestNG-test-CHROME-TEST-1] INFO  Test_Cases.TC002_Login - Closing the browser...
+2025-02-28T16:09:21,833 [TestNG-test-CHROME-TEST-2] INFO  Test_Cases.TC002_Login - Closing the browser...
+2025-02-28T16:11:45,565 [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\KHALED\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml"
+2025-02-28T16:11:46,102 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\KHALED\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+2025-02-28T16:12:05,558 [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\KHALED\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml"
+2025-02-28T16:12:06,098 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\KHALED\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+2025-02-28T16:13:17,195 [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml"
+2025-02-28T16:13:17,746 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml
+
+2025-02-28T16:13:24,083 [main] INFO  Test_Cases.TC002_Login - **** STARTING TC002_Login ****
+2025-02-28T16:13:32,993 [main] INFO  Test_Cases.TC002_Login - Closing the browser...
+2025-02-28T16:14:51,961 [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml"
+2025-02-28T16:14:52,473 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml
+
+2025-02-28T16:14:58,246 [main] INFO  Test_Cases.TC002_Login - **** STARTING TC002_Login ****
+2025-02-28T16:15:07,183 [main] INFO  Test_Cases.TC002_Login - Closing the browser...
+2025-02-28T16:15:12,598 [main] INFO  Test_Cases.TC001_Registration - **** STARTING TC001_Registration **** 
+2025-02-28T16:15:16,698 [main] INFO  Test_Cases.TC001_Registration - Closing the browser...
+2025-02-28T16:18:09,952 [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml"
+2025-02-28T16:18:10,465 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml
+
+2025-02-28T16:18:16,184 [main] INFO  Test_Cases.TC002_Login - **** STARTING TC002_Login ****
+2025-02-28T16:18:25,059 [main] INFO  Test_Cases.TC002_Login - Closing the browser...
+2025-02-28T16:18:30,203 [main] INFO  Test_Cases.TC001_Registration - **** STARTING TC001_Registration **** 
+2025-02-28T16:18:47,758 [main] INFO  Test_Cases.TC001_Registration - Closing the browser...
+2025-02-28T16:28:05,218 [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml"
+2025-02-28T16:28:05,761 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\KHALED\IdeaProjects\Testng-docker\Grouping.xml
+
+2025-02-28T16:28:11,404 [main] INFO  Test_Cases.TC002_Login - **** STARTING TC002_Login ****
+2025-02-28T16:28:20,300 [main] INFO  Test_Cases.TC002_Login - Closing the browser...
+2025-02-28T16:28:25,651 [main] INFO  Test_Cases.TC001_Registration - **** STARTING TC001_Registration **** 
+2025-02-28T16:28:29,911 [main] INFO  Test_Cases.TC001_Registration - Closing the browser...

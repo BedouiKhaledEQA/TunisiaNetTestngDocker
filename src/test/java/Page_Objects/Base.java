@@ -1,6 +1,10 @@
 package Page_Objects;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,18 +16,24 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 
 public class Base {
 
-    public static WebDriver driver;
+    public static Logger logger;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     public static Properties props = new Properties();
 
     // Chargement des propriétés (configurations) une seule fois, dès le démarrage
@@ -37,28 +47,40 @@ public class Base {
         }
     }
 
-    @BeforeClass
-    public static WebDriver launcher() throws MalformedURLException {
-        // Récupère le navigateur : prioritaire sur la propriété système sinon depuis le fichier de config
-        String browser = System.getProperty("browser", props.getProperty("browser", "chrome"));
+    @BeforeClass(groups = {"Regression"})
+    @Parameters({"os", "browser", "env"})
+    public void launcher(String os, String browser, String env) throws MalformedURLException {
+        logger = LogManager.getLogger(this.getClass());
         String environment = System.getProperty("env", "local");
 
         if ("prod".equalsIgnoreCase(environment)) {
-            driver = launchRemoteDriver(browser);
+            setDriver(launchRemoteDriver(browser));
         } else {
-            driver = launchLocalDriver(browser);
+            setDriver(launchLocalDriver(browser));
         }
         configureDriver();
-        driver.get(props.getProperty("url"));
-        return driver;
+    }
+
+    // Méthode pour définir le WebDriver pour le thread courant
+    private static void setDriver(WebDriver driverInstance) {
+        driver.set(driverInstance);
+    }
+
+    // Méthode pour obtenir le WebDriver du thread courant
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    // Méthode pour supprimer le WebDriver du thread courant
+    private static void removeDriver() {
+        driver.remove();
     }
 
     // Méthode pour lancer le driver en mode Remote (Selenium Grid)
     private static WebDriver launchRemoteDriver(String browser) throws MalformedURLException {
         DesiredCapabilities des = new DesiredCapabilities();
         des.setPlatform(Platform.WIN10);
-        // Récupère la propriété dynamique : "chromeHeadless" ou "firefoxHeadless" etc.
-        boolean isHeadless = Boolean.parseBoolean(props.getProperty(browser + "Headless", "false"));
+        boolean isHeadless = Boolean.parseBoolean(props.getProperty(browser + "Headless", "true"));
 
         switch (browser.toLowerCase()) {
             case "chrome":
@@ -93,7 +115,8 @@ public class Base {
 
     // Méthode pour lancer le driver en mode Local
     private static WebDriver launchLocalDriver(String browser) {
-        boolean isHeadless = Boolean.parseBoolean(props.getProperty(browser + "Headless", "false"));
+        boolean isHeadless = Boolean.parseBoolean(props.getProperty(browser + "Headless", "true"));
+        WebDriver driverInstance;
 
         switch (browser.toLowerCase()) {
             case "chrome":
@@ -101,34 +124,56 @@ public class Base {
                 if (isHeadless) {
                     chromeOptions.addArguments("--headless");
                 }
-                return new ChromeDriver(chromeOptions);
+                driverInstance = new ChromeDriver(chromeOptions);
+                break;
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (isHeadless) {
                     firefoxOptions.addArguments("--headless");
                 }
-                return new FirefoxDriver(firefoxOptions);
+                driverInstance = new FirefoxDriver(firefoxOptions);
+                break;
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
                 if (isHeadless) {
                     edgeOptions.addArguments("--headless");
                 }
-                return new EdgeDriver(edgeOptions);
+                driverInstance = new EdgeDriver(edgeOptions);
+                break;
             default:
                 throw new RuntimeException("Navigateur non supporté : " + browser);
         }
+        return driverInstance;
     }
 
     // Configuration commune du driver
     private static void configureDriver() {
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        WebDriver currentDriver = getDriver();
+        currentDriver.manage().window().maximize();
+        currentDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        currentDriver.get(props.getProperty("url"));
     }
 
-    @AfterClass
+    @AfterClass(groups = {"Regression"})
     public void tearDown() {
-        if (driver != null) {
-            driver.quit();
+        WebDriver currentDriver = getDriver();
+        if (currentDriver != null) {
+            logger.info("Closing the browser...");
+            currentDriver.quit();
+            removeDriver();
         }
+    }
+
+    public String captureScreen(String tname) throws  IOException{
+        String timeStamp=new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        TakesScreenshot takesScreenshot = (TakesScreenshot)getDriver();
+        File sourceFile =takesScreenshot.getScreenshotAs(OutputType.FILE);
+        String targetFilePath=System.getProperty("user.dir")+"\\screenshots\\"+tname+"_"+timeStamp +".png";
+        File targetFile=new File(targetFilePath);
+        Files.copy(sourceFile.toPath(), targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        return targetFilePath;
+
+
     }
 }

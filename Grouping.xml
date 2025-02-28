@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="SUITE" thread-count="3" parallel="methods">
+<suite name="Master SUITE" >
+
+    <groups>
+        <run>
+            <include name="Sanity"/>
+            <include name="Regression"/>
+            <include name=""/>
+            <exclude name="Master"/>
+
+        </run>
+    </groups>
     <listeners>
         <listener class-name="Utilities.ExtentReportManager"/>
 
-
     </listeners>
+
     <parameter name="env" value="${env:local}"/>
-    <test name="CHROME-TEST">
+    <test thread-count="3" name="CHROME-TEST" enabled="true">
         <parameter name="os" value="windows"/>
         <parameter name="browser" value="chrome"/>
 
@@ -35,6 +45,6 @@
             <class name="Test_Cases.TC002_Login"/>
         </classes>
     </test>
-
+    
 </suite>
 

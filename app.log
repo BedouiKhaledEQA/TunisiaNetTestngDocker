@@ -1,0 +1,9 @@
+2025-02-23 00:11:01 INFO  Utils:112 - [TestNG] Running:
+  C:\Users\KHALED\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+2025-02-23 00:11:08 INFO  TC002_Login:15 - **** STARTING TC002_Login ****
+2025-02-23 00:21:44 DEBUG TestNG:82 - suiteXmlPath: "C:\Users\KHALED\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml"
+2025-02-23 00:21:45 INFO  Utils:112 - [TestNG] Running:
+  C:\Users\KHALED\AppData\Local\JetBrains\IdeaIC2024.1\temp-testng-customsuite.xml
+
+2025-02-23 00:21:51 INFO  TC002_Login:15 - **** STARTING TC002_Login ****

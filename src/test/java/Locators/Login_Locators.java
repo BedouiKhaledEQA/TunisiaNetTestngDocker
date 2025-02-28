@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Login_Locators extends Base {
     public Login_Locators(){
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(getDriver(),this);
     }
 
     @FindBy(xpath = "//div[@class='user-info']")

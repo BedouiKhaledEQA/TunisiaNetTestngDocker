@@ -11,10 +11,13 @@ import org.testng.Assert;
 import java.time.Duration;
 
 public class Login_Page extends Login_Locators {
-    public Login_Page(){
-        PageFactory.initElements(driver,this);
-    }
+    private WebDriver driver;
     public  static  Login_Page instance ;
+
+    public Login_Page() {
+        this.driver = Base.getDriver();  // Assure que l'instance du WebDriver est bien récupérée
+    }
+
     public static Login_Page getInstance(){
         if(instance == null){
             instance= new Login_Page();
