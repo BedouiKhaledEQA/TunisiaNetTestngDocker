@@ -18,7 +18,8 @@ jobs:
         uses: browser-actions/setup-chrome@latest
 
       - name: Run Test
-        run: mvn clean test
+        run: mvn clean test -Denv=local -Dbrowser=chrome
+
 
       - name: Upload Extent Reports
         run: |
