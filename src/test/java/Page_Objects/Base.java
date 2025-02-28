@@ -115,7 +115,7 @@ public class Base {
 
     // Méthode pour lancer le driver en mode Local
     private static WebDriver launchLocalDriver(String browser) {
-        boolean isHeadless = Boolean.parseBoolean(props.getProperty(browser + "Headless", "true"));
+        boolean isHeadless = Boolean.parseBoolean(System.getenv("HEADLESS_MODE"));
         WebDriver driverInstance;
 
         switch (browser.toLowerCase()) {
