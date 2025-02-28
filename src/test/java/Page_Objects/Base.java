@@ -115,32 +115,29 @@ public class Base {
 
     // Méthode pour lancer le driver en mode Local
     private static WebDriver launchLocalDriver(String browser) {
-        boolean isHeadless = Boolean.parseBoolean(System.getenv("HEADLESS_MODE"));
+        //boolean isHeadless = Boolean.parseBoolean(props.getProperty(browser + "Headless", "true"));
         WebDriver driverInstance;
 
         switch (browser.toLowerCase()) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
-                if (isHeadless) {
+
                     chromeOptions.addArguments("--headless");
-                    chromeOptions.addArguments("--disable-gpu");  // Pour éviter les erreurs liées au GPU
-                    chromeOptions.addArguments("--window-size=1920x1080");  // Taille de la fenêtre
-                    chromeOptions.addArguments("--no-sandbox");
-                }
+
                 driverInstance = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                if (isHeadless) {
+
                     firefoxOptions.addArguments("--headless");
-                }
+
                 driverInstance = new FirefoxDriver(firefoxOptions);
                 break;
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
-                if (isHeadless) {
+
                     edgeOptions.addArguments("--headless");
-                }
+
                 driverInstance = new EdgeDriver(edgeOptions);
                 break;
             default:

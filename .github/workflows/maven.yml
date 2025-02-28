@@ -5,8 +5,6 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      HEADLESS_MODE: "true"  # Passer la variable d'environnement pour activer le mode headless
     steps:
       - uses: actions/checkout@v2
 
@@ -20,7 +18,8 @@ jobs:
         uses: browser-actions/setup-chrome@latest
 
       - name: Run Test
-        run: mvn clean test
+        run: mvn clean test -Denv=local -Dbrowser=chrome
+
 
       - name: Upload Extent Reports
         run: |
