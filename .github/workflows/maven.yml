@@ -5,10 +5,8 @@ on: [ push ]
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Set up JDK 17
         uses: actions/setup-java@v2
@@ -19,29 +17,31 @@ jobs:
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@latest
 
-      - name: Run tests with Maven
-        run: mvn test -DsuiteXmlFile=Testng.xml
+      - name: Run Tests with Maven and TestNG
+        run: mvn clean test
 
+      - name: Collect Extent Reports
+        run: mvn extent-report:report
 
-      - name: Get ExtentReport history
+      - name: Get Extent Report history
         uses: actions/checkout@v2
         continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
 
-      - name: List files in target directory  # Vérifier que les rapports existent
-        run: |
-          ls -R target
+      - name: Allure Report action from marketplace
+        uses: simple-elf/allure-report-action@master
+        id: allure-report
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
 
-      - name: Save ExtentReport to gh-pages directory
-        run: |
-          mkdir -p gh-pages/extent-report
-          cp -r target/extent-report/* gh-pages/extent-report/
-
-      - name: Deploy report to Github Pages
+      - name: Deploy Extent Report to Github Pages
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.TESTNGTOCKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: gh-pages/extent-report
+          PUBLISH_DIR: gh-pages
