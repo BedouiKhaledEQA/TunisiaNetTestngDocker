@@ -19,8 +19,9 @@ jobs:
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@latest
 
-      - name: Run Tests
-        run: mvn clean test -Dreport=true  # S'assurer que le rapport Extent est généré
+      - name: Run tests with Maven
+        run: mvn test -DsuiteXmlFile=testng.xml
+
 
       - name: Get ExtentReport history
         uses: actions/checkout@v2
