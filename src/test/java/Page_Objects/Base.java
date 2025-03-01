@@ -123,8 +123,9 @@ public class Base {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 if (isHeadless) {
                     chromeOptions.addArguments("--headless");
-                    driverInstance = new ChromeDriver(chromeOptions);
                 }
+                driverInstance = new ChromeDriver(chromeOptions);
+                break;
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (isHeadless) {
