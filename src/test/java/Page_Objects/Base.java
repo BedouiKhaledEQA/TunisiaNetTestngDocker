@@ -120,12 +120,14 @@ public class Base {
 
         switch (browser.toLowerCase()) {
             case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
+
                 if (isHeadless) {
+                    ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("--window-size=1200x800");
+                    driverInstance = new ChromeDriver(chromeOptions);
                 }
-                driverInstance = new ChromeDriver(chromeOptions);
-                break;
+
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (isHeadless) {
