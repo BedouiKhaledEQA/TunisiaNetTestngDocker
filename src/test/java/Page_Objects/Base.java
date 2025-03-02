@@ -113,32 +113,43 @@ public class Base {
         return new RemoteWebDriver(new URL("http://localhost:4444"), des);
     }
 
-    // Méthode pour lancer le driver en mode Local
     private static WebDriver launchLocalDriver(String browser) {
-       //boolean isHeadless = Boolean.parseBoolean(props.getProperty(browser + "Headless", "true"));
+        boolean isCI = System.getenv("GITHUB_ACTIONS") != null; // Vérifie si on est dans GitHub Actions
+        boolean isHeadless = isCI || Boolean.parseBoolean(props.getProperty(browser + "Headless", "true"));
         WebDriver driverInstance;
 
         switch (browser.toLowerCase()) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--headless");
+                if (isHeadless) {
+                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--disable-gpu");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                }
                 driverInstance = new ChromeDriver(chromeOptions);
                 break;
 
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-              //  if (isHeadless) {
+                if (isHeadless) {
                     firefoxOptions.addArguments("--headless");
+                }
                 driverInstance = new FirefoxDriver(firefoxOptions);
+                break;
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
+                if (isHeadless) {
                     edgeOptions.addArguments("--headless");
+                }
                 driverInstance = new EdgeDriver(edgeOptions);
+                break;
             default:
                 throw new RuntimeException("Navigateur non supporté : " + browser);
         }
         return driverInstance;
     }
+
 
     // Configuration commune du driver
     private static void configureDriver() {
